@@ -8,47 +8,25 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var CounterComponent = function (_React$Component) {
-    _inherits(CounterComponent, _React$Component);
+var Toggle = function (_React$Component) {
+    _inherits(Toggle, _React$Component);
 
-    function CounterComponent(props) {
-        _classCallCheck(this, CounterComponent);
+    function Toggle(props) {
+        _classCallCheck(this, Toggle);
 
-        var _this = _possibleConstructorReturn(this, (CounterComponent.__proto__ || Object.getPrototypeOf(CounterComponent)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Toggle.__proto__ || Object.getPrototypeOf(Toggle)).call(this, props));
 
-        _this.AdditionMethod = _this.AdditionMethod.bind(_this);
-        _this.SubMethod = _this.SubMethod.bind(_this);
-        _this.ResetMethod = _this.ResetMethod.bind(_this);
-        _this.state = {
-            count: 0
-        };
+        _this.state = { isToggle: true };
+        _this.handleClick = _this.handleClick.bind(_this);
         return _this;
     }
 
-    _createClass(CounterComponent, [{
-        key: 'AdditionMethod',
-        value: function AdditionMethod() {
-            this.setState(function (prevStat) {
+    _createClass(Toggle, [{
+        key: 'handleClick',
+        value: function handleClick() {
+            this.setState(function (state) {
                 return {
-                    count: prevStat.count + 1
-                };
-            });
-        }
-    }, {
-        key: 'SubMethod',
-        value: function SubMethod() {
-            this.setState(function (prevStat) {
-                return {
-                    count: prevStat.count - 1
-                };
-            });
-        }
-    }, {
-        key: 'ResetMethod',
-        value: function ResetMethod() {
-            this.setState(function (prevStat) {
-                return {
-                    count: 0
+                    isToggle: !state.isToggle
                 };
             });
         }
@@ -59,31 +37,15 @@ var CounterComponent = function (_React$Component) {
                 'div',
                 null,
                 React.createElement(
-                    'h1',
-                    null,
-                    'Count: ',
-                    this.state.count
-                ),
-                React.createElement(
                     'button',
-                    { onClick: this.AdditionMethod },
-                    '+1'
-                ),
-                React.createElement(
-                    'button',
-                    { onClick: this.SubMethod },
-                    '-1'
-                ),
-                React.createElement(
-                    'button',
-                    { onClick: this.ResetMethod },
-                    'Reset'
+                    { onClick: this.handleClick },
+                    this.state.isToggle ? 'ON' : 'OFF'
                 )
             );
         }
     }]);
 
-    return CounterComponent;
+    return Toggle;
 }(React.Component);
 
-ReactDOM.render(React.createElement(CounterComponent, null), document.getElementById('app'));
+ReactDOM.render(React.createElement(Toggle, null), document.getElementById('testing1'));
